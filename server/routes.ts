@@ -71,12 +71,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Enable CORS
   app.use(cors());
 
-  // Request logging middleware
-  app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next();
-  });
-
   // 1. GET /api/furniture – Returns a list of furniture items
   app.get("/api/furniture", (req, res) => {
     res.status(200).json({
@@ -283,12 +277,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Simple health check endpoint
-  app.get("/health", (req, res) => {
-    res.json({ status: 'ok' });
-  });
-
-  // Detailed health check endpoint
+  // Health check endpoint
   app.get("/api/health", (req, res) => {
     res.status(200).json({
       success: true,
